@@ -1,6 +1,6 @@
 import requests
 
-url = "https://weathercast-arduino.herokuapp.com/saveData"
+url = "https://weathercast-arduino.herokuapp.com/s"
 
 data = {
     "arduinoCode": 12345,

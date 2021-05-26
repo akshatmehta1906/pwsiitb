@@ -8,8 +8,8 @@ const bcrypt = require('bcrypt');
 const app = express();
 
 app.set("view engine", "ejs");
-
 app.use(bodyParser.urlencoded({extended: true}));
+app.set(express.static("public"));
 app.use(bodyParser.json());
 
 app.use(session({
@@ -458,7 +458,7 @@ app.post("/saveData", function(req, res){
             {
                 if (arduinoDataFound.dataPresent)
                 {
-                    ArduinoData.updateOne({arduinoCode: req.body.arduinoCode, maxTime: nd.toLocaleString()}, function(error){
+                    ArduinoData.updateOne({arduinoCode: req.body.arduinoCode}, {maxTime: nd.toLocaleString()}, function(error){
                         if (error)
                         {
                             console.log(error);
@@ -474,7 +474,7 @@ app.post("/saveData", function(req, res){
                 }
                 else
                 {
-                    ArduinoData.updateOne({arduinoCode: req.body.arduinoCode, dataPresent: true, minTime: nd.toLocaleString(), maxTime: nd.toLocaleString()}, function(error){
+                    ArduinoData.updateOne({arduinoCode: req.body.arduinoCode}, {dataPresent: true, minTime: nd.toLocaleString(), maxTime: nd.toLocaleString()}, function(error){
                         if (error)
                         {
                             console.log(error);
